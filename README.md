@@ -1,0 +1,1 @@
+https://github.com/BaptisteAg/strapi4-ftp-provider
