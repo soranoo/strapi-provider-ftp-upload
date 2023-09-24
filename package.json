@@ -1,17 +1,20 @@
 {
-    "name": "@soranoo/strapi-provider-upload-ftp",
-    "version": "1.0.5",
-    "description": "A Strapi FTP provider",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "license": "MIT",
-    "references": [
-      "https://github.com/BaptisteAg/strapi4-ftp-provider"
-    ],
-    "dependencies": {
-      "basic-ftp": "^5.0.2",
-      "stream": "^0.0.2"
-    }
+  "name": "strapi-provider-ftp-upload",
+  "version": "1.0.0",
+  "description": "https://github.com/BaptisteAg/strapi4-ftp-provider",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "strapi",
+    "strapi-proivder",
+    "ftp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "basic-ftp": "^5.0.3",
+    "stream": "^0.0.2"
   }
+}
