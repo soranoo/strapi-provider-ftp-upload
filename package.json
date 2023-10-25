@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-ftp-upload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "https://github.com/BaptisteAg/strapi4-ftp-provider",
   "main": "index.js",
   "scripts": {
