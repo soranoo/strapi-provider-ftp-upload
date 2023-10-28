@@ -33,16 +33,30 @@ export default class TaskQueue {
             }
         }
     }
-
+    
     /**
      * Enqueues a task for execution, respecting the queue length limit.
      * @param task A function that returns a Promise representing the task to be executed.
+     * @returns A Promise that resolves when the enqueued task is finished.
      */
-    enqueue(task: () => Promise<void>) {
-        if (this.queueLengthLimit === -1 || (this.queue.length < this.queueLengthLimit)) {
-            this.queue.push(task);
-            this.processQueue();
-        }
+    enqueue(task: () => Promise<void>): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const taskWrapper = async () => {
+                try {
+                    await task();
+                    resolve();
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            if (this.queueLengthLimit === -1 || this.queue.length < this.queueLengthLimit) {
+                this.queue.push(taskWrapper);
+                this.processQueue();
+            } else {
+                reject(new Error("Queue is full."));
+            }
+        });
     }
 
     /**

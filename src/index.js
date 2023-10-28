@@ -59,6 +59,10 @@ module.exports = {
         try {
           await client.remove(path);
         } catch (error) {
+          const { code } = error;
+          if (code === 550) {
+            return; // File not found, means it's already deleted
+          }
           throw error;
         } finally {
           await client.close();
@@ -68,12 +72,12 @@ module.exports = {
 
     return {
       async upload(file) {
-        await taskQueue.enqueue(() => uploadStream({ inputFile: file }));
+        await taskQueue.enqueue(async () => await uploadStream(file));
         file.url = `${config.baseUrl}${file.hash}${file.ext}`;
         delete file.buffer;
       },
       async uploadStream(file) {
-        await taskQueue.enqueue(() => uploadStream({ inputFile: file }));
+        await taskQueue.enqueue(async () => await uploadStream(file));
         file.url = `${config.baseUrl}${file.hash}${file.ext}`;
         delete file.buffer;
       },
