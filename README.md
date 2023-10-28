@@ -10,7 +10,7 @@ Give me a ⭐ if you like it.
 
 ## 🗝️ Features
 
-- Support FTP Connection Limition (mainly for FTP servers with IP connection rate limit)
+- Support FTP Connection Concurrency Limitation (mainly for FTP servers with IP connection rate limit)
 
 ## 📦 Requirements
 
