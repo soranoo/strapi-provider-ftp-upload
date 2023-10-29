@@ -11,6 +11,8 @@ Give me a ⭐ if you like it.
 ## 🗝️ Features
 
 - Support FTP Connection Concurrency Limitation (mainly for FTP servers with IP connection rate limit)
+- Support Sentry Error Reporting (only activated when Sentry is installed and configured) 
+  - [How to setup](https://market.strapi.io/plugins/@strapi-plugin-sentry)
 
 ## 📦 Requirements
 
@@ -46,6 +48,7 @@ module.exports = ({ env }) => ({
         baseUrl: env("FTP_BASE_URL"),
 
         connectionConcurrency: env("FTP_CONNECTION_CONCURRENCY", 5), // 👈 Optional. Default to 5
+        useSentry: true, // 👈 Optional. Default to false
       },
     },
   },

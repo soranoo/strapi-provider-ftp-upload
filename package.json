@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-ftp-upload",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Strapi provider to upload files to a FTP server with connection concurrency limitation.",
   "main": "dist/index.js",
   "type": "commonjs",

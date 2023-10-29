@@ -5,10 +5,16 @@ const TaskQueue = require("./task-queue").default;
 
 const taskQueue = new TaskQueue({ concurrency: 5, queueLengthLimit: -1 });
 
+let sentryService = undefined;
+try {
+  sentryService = strapi.plugin("sentry").service("sentry");
+} catch (error) {}
+
 module.exports = {
   init(config) {
     const getConnection = async () => {
       taskQueue.setConcurrency(config.connectionConcurrency || 5);
+      sentryService = config.useSentry ? sentryService : undefined;
 
       const client = new ftpClient.Client();
       await client.access({
@@ -44,6 +50,11 @@ module.exports = {
         source.push(null);
         await client.uploadFrom(source, path);
       } catch (error) {
+        sentryService?.sendError(error, (scope, sentryInstance) => {
+          scope.setTag("ftp", "upload");
+          scope.setLevel("error");
+        });
+
         throw error;
       } finally {
         await client.close();
@@ -61,8 +72,17 @@ module.exports = {
         } catch (error) {
           const { code } = error;
           if (code === 550) {
+            sentryService?.sendError(error, (scope, sentryInstance) => {
+              scope.setTag("ftp", "delete");
+              scope.setLevel("info");
+            });
             return; // File not found, means it's already deleted
           }
+          sentryService?.sendError(error, (scope, sentryInstance) => {
+            scope.setTag("ftp", "delete");
+            scope.setLevel("error");
+          });
+
           throw error;
         } finally {
           await client.close();
