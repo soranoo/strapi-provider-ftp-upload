@@ -1,6 +1,6 @@
 # STRAPI-PROVIDER-FTP-UPLOAD
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)&nbsp;&nbsp;&nbsp;[![Donation](https://img.shields.io/static/v1?label=Donation&message=❤️&style=social)](https://github.com/soranoo/Donation)
+![Weekly Download](https://img.shields.io/npm/dw/strapi-provider-ftp-upload?color=0066cc&style=flat) [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)&nbsp;&nbsp;&nbsp;[![Donation](https://img.shields.io/static/v1?label=Donation&message=❤️&style=social)](https://github.com/soranoo/Donation)
 
 A Strapi provider to upload files to a FTP server with connection concurrency limitation.
 
